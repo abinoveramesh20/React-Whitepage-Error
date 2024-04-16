@@ -18,4 +18,4 @@ jobs:
         
       - name: Deploy React App
         run: |
-          sudo cp -r /var/www/html/my-react-app/build/* /var/www/html/React-Whitepage-error
+          sudo cp -r /var/www/html/actions-runner/_work/my-react-app/my-react-app/build/*  /var/www/html/React-Whitepage-error
