@@ -24,3 +24,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: build
           target: /var/www/html/React-Whitepage-error
+          
