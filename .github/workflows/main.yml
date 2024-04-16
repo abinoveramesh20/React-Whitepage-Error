@@ -1,37 +1,27 @@
-name: React Build and Deploy
+name: Deploy to Server
 
 on:
   push:
     branches:
-      - main
+      - main # Change this to your main branch name
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Build React App
+        run: npm install && npm run build
+
+      - name: Copy Build to Server
+        uses: appleboy/scp-action@master
         with:
-          node-version: "14.x"
-
-      - name: Cache npm dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
-
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build React project
-        run: npm run build
-
-      - name: Copy built files to deployment directory
-        run: |
-          sudo scp -r ./build/* ubuntu@35.154.126.63:/var/www/html/React-PrivateSubnet/
+          host: ${{ secrets.SERVER_HOST }} # Add your server hostname or IP here
+          username: ${{ secrets.SERVER_USERNAME }} # Add your server username here
+          password: ${{ secrets.SERVER_PASSWORD }} # Add your server password here
+          source: "build/" # Path to your build directory
+          target: "/var/www/html/React-Whitepage-error" # Path on the server to copy the build files
 
