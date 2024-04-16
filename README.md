@@ -1,3 +1,14 @@
+#Procedure I have done
+1. npx create-react-app my-react-app
+2. cd my-react-app/
+3. Verify the npm installed or not, How to Check?? See the node_modules are there inside the folder or not
+4. npm start
+5. Add homepage = "." in package.json 
+6. npm start
+7. npm run build
+8. point the build folder in browser
+9. CI/CD for the applicaton not going down
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
